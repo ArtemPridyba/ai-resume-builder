@@ -1,3 +1,3 @@
 ﻿"""Налаштування застосунку."""
 
-AI_REQUESTS_PER_DAY = 10
+AI_REQUESTS_PER_DAY = 20
