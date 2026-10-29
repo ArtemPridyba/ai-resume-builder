@@ -1,0 +1,31 @@
+﻿name: Project Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check project structure
+        run: |
+          for f in README.md .gitignore docs backend frontend; do
+            test -e "$f" || { echo "Відсутній обов'язковий елемент: $f"; exit 1; }
+          done
+          echo "Структура проєкту коректна"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install pytest
+
+      - name: Run tests
+        working-directory: backend
+        run: pytest -v
