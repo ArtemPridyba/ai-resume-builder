@@ -7,3 +7,9 @@ class Resume:
     title: str
     summary: str = ""
     skills: list[str] = field(default_factory=list)
+
+@dataclass
+class UserProfile:
+    email: str
+    full_name: str
+    language: str = "uk"
